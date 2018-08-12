@@ -1,6 +1,6 @@
 var cerealsArray = [
 {	name: 'Cheerios',
-	img: './images/cereal/cheerios.jpg',},
+	img: './images/cereal/cheerios.jpg'},
 {	name: 'Captain Crunch',
 	img: './images/cereal/crunch.jpg'},
 {	name: 'Grape Juice',
@@ -14,7 +14,7 @@ var cerealsArray = [
 
 var juicesArray = [
 {	name: 'Apple Juice',
-	img: './images/juice/apple-juice.jpg',},
+	img: './images/juice/apple-juice.jpg'},
 {	name: 'Carrot Juice',
 	img: './images/juice/carrot-juice.jpg'},
 {	name: 'Grape Juice',
@@ -28,7 +28,7 @@ var juicesArray = [
 
 var sweetsArray = [ 
 {	name: 'Kit-Kat',
-	img: './images/candy/kit-kat.jpg',},
+	img: './images/candy/kit-kat.jpg'},
 {	name: 'M&Ms',
 	img: './images/candy/m&ms.jpg'},
 {	name: 'Skittles',
@@ -56,27 +56,45 @@ window.onload=function(){
 		sweetsClick.addEventListener("click", populateItem);
 }
 
+
 //function to populete items when category name is clicked, 
 	//depending on category 
-	//there's probably a dryer way of doing this...(also not working!)
-function populateItem (category) {
-	var theGallery = document.getElementsByClassName("gallery");
-	if (category = "cerealsButton") {
-		for (var i = 0; i < cerealsArray.length; i++) {
-			theGallery.append(`<img src="${cerealsArray[i].img}"><p>${cerealsArray[i].name}</p>`);
-		} }else if (category == "juicesButton") {
-		for (var i = 0; i < juicesArray.length; i++) {
-			theGallery.append(`<img src="${juicesArray[i].img}"><p>${juicesArray[i].name}</p>`);
-		} }else if (category = "sweetsButton") {
-		for (var i = 0; i < sweetsArray.length; i++) {
-			theGallery.append(`<img src="${sweetsArray[i].img}"><p>${sweetsArray[i].name}</p>`);
-		} }
+	//there's probably a dryer way of doing this...
+	//had to make it into a switch, but still getting undefined!
+
+	function populateItem (cat) {
+
+	var galleryItems = [];
+
+	switch (cat) {
+		case document.getElementById("cerealsButton"):
+			galleryItems = cerealsArray;
+			break;
+		case document.getElementById("juicesButton"):
+			galleryItems = juicesArray;
+			break;
+		case document.getElementById("sweetsButton"):
+			galleryItems = sweetsArray;
+			break;
+		default:
+	}
+	
+	var galleryItemsArray;
+		for (var i = 0; i < galleryItems.length; i++) {
+			galleryItemsArray.append(`<div><img src="${galleryItems[i].img}"><p>${galleryItems[i].name}</p></div>`);
+
+		}
+		document.getElementById("gallery").append(galleryItemsArray);
 };
+
+// need to make a function that makes the items already
+//populated into buttons then use those in another function
+//to add them to the basket
 
 //function to put selected item text in a list below in the shopping area
 	//to append to list as <p>
-function addToBasket (clickedItem) {
-	var addedToBasket = document.getElementById("basket");
-	addedToBasket.append(`<p>${clickedItem}</p>`);
-}
-
+	function addToBasket (clickedItem) {
+		var addedToBasket = document.getElementById("basket");
+		addedToBasket.append(`<p>${clickedItem}</p>`);
+	}
+	
