@@ -5,7 +5,7 @@
 	<title>Supermarket</title>
 	<link href="./style.css" rel="stylesheet" type="text/css" />
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-	<script src="./main.js"></script>
+	<script src="./main.js" defer></script>
 </head>
 
 <body>
@@ -14,33 +14,13 @@
 			<h1>Categories</h1>
 			<nav>
 				<ul>
-					<li>Cereals</li>
-					<li>Juices</li>
-					<li>Sweets</li>
+					<li id="cerealsButton">Cereals</li>
+					<li id="juicesButton">Juices</li>
+					<li id="sweetsButton">Sweets</li>
 				</ul>
 			</nav>
 		</header>
 		<section class="gallery">
-			<div class="image" id="item1">
-				<img src=""></img>
-				<p></p>
-			</div>
-			<div class="image" id="item2">
-				<img src=""></img>
-				<p></p>
-			</div>
-			<div class="image" id="item3">
-				<img src=""></img>
-				<p></p>
-			</div>
-			<div class="image" id="item4">
-				<img src=""></img>
-				<p></p>
-			</div>
-			<div class="image" id="item5">
-				<img src=""></img>
-				<p></p>
-			</div>
 		</section>
 	</main>
 	<aside>
@@ -48,7 +28,7 @@
 			<h1>Shopping Cart</h1>
 		</div>
 		<section class ="shopping-section">
-			<div class="basket">
+			<div id="basket">
 				<div class="item-added" id="item-text">
 					<p>item1text</p>
 					<p>item2text</p>

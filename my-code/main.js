@@ -1,41 +1,41 @@
-var cereals = [
-{	cerealName: 'Cheerios',
+var cerealsArray = [
+{	name: 'Cheerios',
 	img: './images/cereal/cheerios.jpg',},
-{	cerealName: 'Captain Crunch',
+{	name: 'Captain Crunch',
 	img: './images/cereal/crunch.jpg'},
-{	cerealName: 'Grape Juice',
+{	name: 'Grape Juice',
 	img: './images/cereal/fruit-loops.jpg'},
-{	cerealName: 'Choco Puffs',
+{	name: 'Choco Puffs',
 	img: './images/cereal/puffs.jpg'},
-{	cerealName: 'Raisin Bran',
+{	name: 'Raisin Bran',
 	img: './images/cereal/raisin-bran.jpg'}
 ];
 
 
-var juices = [
-{	juiceName: 'Apple Juice',
+var juicesArray = [
+{	name: 'Apple Juice',
 	img: './images/juice/apple-juice.jpg',},
-{	juiceName: 'Carrot Juice',
+{	name: 'Carrot Juice',
 	img: './images/juice/carrot-juice.jpg'},
-{	juiceName: 'Grape Juice',
+{	name: 'Grape Juice',
 	img: './images/juice/grape-juice.jpg'},
-{	juiceName: 'Orange Juice',
+{	name: 'Orange Juice',
 	img: './images/juice/Orange-juice.jpg'},
-{	juiceName: 'Tomato Jiuce',
+{	name: 'Tomato Jiuce',
 	img: './images/juice/tomato-juice.jpg'}
 ];
 
 
-var sweets = [ 
-{	sweetName: 'Kit-Kat',
+var sweetsArray = [ 
+{	name: 'Kit-Kat',
 	img: './images/candy/kit-kat.jpg',},
-{	sweetName: 'M&Ms',
+{	name: 'M&Ms',
 	img: './images/candy/m&ms.jpg'},
-{	sweetName: 'Skittles',
+{	name: 'Skittles',
 	img: './images/candy/skittles.jpg'},
-{	sweetName: 'Snickers',
+{	name: 'Snickers',
 	img: './images/candy/snickers.jpg'},
-{	sweetName: 'Twix',
+{	name: 'Twix',
 	img: './images/candy/twix.jpg'}
 ];
 
@@ -45,7 +45,38 @@ var sweets = [
 var shoppingCart = [];
 
 //ACTIONS
+//function to make the category text into clickable buttons
+	//once the window loads! (apparently this is a thing!?)
+window.onload=function(){
+    var cerealClick = document.getElementById("cerealsButton");
+		cerealClick.addEventListener("click", populateItem);
+	var juicesClick = document.getElementById("juicesButton");
+		juicesClick.addEventListener("click", populateItem);
+	var sweetsClick = document.getElementById("sweetsButton");
+		sweetsClick.addEventListener("click", populateItem);
+}
+
+//function to populete items when category name is clicked, 
+	//depending on category 
+	//there's probably a dryer way of doing this...(also not working!)
+function populateItem (category) {
+	var theGallery = document.getElementsByClassName("gallery");
+	if (category = "cerealsButton") {
+		for (var i = 0; i < cerealsArray.length; i++) {
+			theGallery.append(`<img src="${cerealsArray[i].img}"><p>${cerealsArray[i].name}</p>`);
+		} }else if (category == "juicesButton") {
+		for (var i = 0; i < juicesArray.length; i++) {
+			theGallery.append(`<img src="${juicesArray[i].img}"><p>${juicesArray[i].name}</p>`);
+		} }else if (category = "sweetsButton") {
+		for (var i = 0; i < sweetsArray.length; i++) {
+			theGallery.append(`<img src="${sweetsArray[i].img}"><p>${sweetsArray[i].name}</p>`);
+		} }
+};
+
 //function to put selected item text in a list below in the shopping area
-	//probably to append to list, make them buttons?
-//function to show items when category name is clicked, 
-	//depending on category
+	//to append to list as <p>
+function addToBasket (clickedItem) {
+	var addedToBasket = document.getElementById("basket");
+	addedToBasket.append(`<p>${clickedItem}</p>`);
+}
+
