@@ -50,34 +50,30 @@ var categoryCLICKED;
 	//once the window loads! (apparently this is a thing!?)
 window.onload=function(){
     var cerealClick = document.getElementById("cerealsButton");
-		cerealClick.addEventListener("click", function () {categoryCLICKED = this.id}, populateItem);
+		cerealClick.addEventListener("click", function () {categoryCLICKED = this.id;
+			populateItem(categoryCLICKED);});
 		// cerealClick.addEventListener("click", function () {console.log(categoryCLICKED)});
 		var juicesClick = document.getElementById("juicesButton");
-		juicesClick.addEventListener("click", function () {categoryCLICKED = this.id});
+		juicesClick.addEventListener("click", function () {categoryCLICKED = this.id;
+			populateItem(categoryCLICKED);});
 		// juicesClick.addEventListener("click", function () {console.log(categoryCLICKED)});
 		var sweetsClick = document.getElementById("sweetsButton");
-		sweetsClick.addEventListener("click", function () {categoryCLICKED = this.id});
+		sweetsClick.addEventListener("click", function () {categoryCLICKED = this.id;
+			populateItem(categoryCLICKED)});
 		// sweetsClick.addEventListener("click", function () {console.log(categoryCLICKED)});
 }
 
-//function to check which button was clicked
-//if ____ is clicked, then store that ID in a 
-// variable and THEN execute populateItem (___)
 
 //function to populete items when category name is clicked, 
 	//depending on category 
-	//there's probably a dryer way of doing this...
-	//had to make it into a switch, but still getting undefined!
 
-	function populateItem (categoryCLICKED) {
-	
+	function populateItem (cat) {
 
 	var galleryItems = [];
-
-	switch (categoryCLICKED) {
+	var galleryItemsArray = [];
+	switch (cat) {
 		case "cerealsButton":
-			// galleryItems = cerealsArray;
-			console.log('hey-o sanity check-o');
+			galleryItems = cerealsArray;
 			break;
 		case "juicesButton":
 			galleryItems = juicesArray;
@@ -86,15 +82,24 @@ window.onload=function(){
 			galleryItems = sweetsArray;
 			break;
 		default:
+			console.log("HALP");
 	}
-	
-	var galleryItemsArray = [];
-		for (var i = 0; i < galleryItems.length; i++) {
-			
-			// galleryItemsArray.push(`<div><img src="${galleryItems[i].img}"><p>${galleryItems[i].name}</p></div>`);
 
+
+
+	for (var i = 0; i < galleryItems.length; i++) {
+		///TRYING TO MAKE A CHILD IN HTML TO STORE THE ARRAY PUSHES
+		// var itemsParent = document.getElementById("item-text");
+		// itemsParent.appendChild(`<p>`)
+		//push gallery items into array
+		galleryItemsArray.push(galleryItems[i].img);
+		// itemsParent.appendChild(`</p><p>`)
+		galleryItemsArray.push(galleryItems[i].name);
+		// itemsParent.appendChild(`</p>`)
 		}
-		document.getElementById("gallery").append(galleryItemsArray);
+		
+		// document.getElementById("gallery").append(galleryItemsArray);
+		console.log(galleryItemsArray);
 };
 
 //function to put selected item text in a list below in the shopping area
@@ -102,7 +107,13 @@ window.onload=function(){
 function addToBasket (clickedItem) {
 		var addedToBasket = document.getElementById("basket");
 		addedToBasket.append(`<p>${clickedItem}</p>`);
-	}//i think this is going to work, how do i test it?
+	}//how do i make this apply to the current populated items?
+
+
+
+// need a function to clear all the items from the last category
+// when the new category is loaded
+
 
 
 //making populated items clickable and add them to page
