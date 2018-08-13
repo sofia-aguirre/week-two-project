@@ -43,58 +43,74 @@ var sweetsArray = [
 	//going to be appended to the array with push or
 	//maybe appended using an add child method?
 var shoppingCart = [];
+var categoryCLICKED;
 
 //ACTIONS
 //function to make the category text into clickable buttons
 	//once the window loads! (apparently this is a thing!?)
 window.onload=function(){
     var cerealClick = document.getElementById("cerealsButton");
-		cerealClick.addEventListener("click", populateItem);
-	var juicesClick = document.getElementById("juicesButton");
-		juicesClick.addEventListener("click", populateItem);
-	var sweetsClick = document.getElementById("sweetsButton");
-		sweetsClick.addEventListener("click", populateItem);
+		cerealClick.addEventListener("click", function () {categoryCLICKED = this.id}, populateItem);
+		// cerealClick.addEventListener("click", function () {console.log(categoryCLICKED)});
+		var juicesClick = document.getElementById("juicesButton");
+		juicesClick.addEventListener("click", function () {categoryCLICKED = this.id});
+		// juicesClick.addEventListener("click", function () {console.log(categoryCLICKED)});
+		var sweetsClick = document.getElementById("sweetsButton");
+		sweetsClick.addEventListener("click", function () {categoryCLICKED = this.id});
+		// sweetsClick.addEventListener("click", function () {console.log(categoryCLICKED)});
 }
 
+//function to check which button was clicked
+//if ____ is clicked, then store that ID in a 
+// variable and THEN execute populateItem (___)
 
 //function to populete items when category name is clicked, 
 	//depending on category 
 	//there's probably a dryer way of doing this...
 	//had to make it into a switch, but still getting undefined!
 
-	function populateItem (cat) {
+	function populateItem (categoryCLICKED) {
+	
 
 	var galleryItems = [];
 
-	switch (cat) {
-		case document.getElementById("cerealsButton"):
-			galleryItems = cerealsArray;
+	switch (categoryCLICKED) {
+		case "cerealsButton":
+			// galleryItems = cerealsArray;
+			console.log('hey-o sanity check-o');
 			break;
-		case document.getElementById("juicesButton"):
+		case "juicesButton":
 			galleryItems = juicesArray;
 			break;
-		case document.getElementById("sweetsButton"):
+		case "sweetsButton":
 			galleryItems = sweetsArray;
 			break;
 		default:
 	}
 	
-	var galleryItemsArray;
+	var galleryItemsArray = [];
 		for (var i = 0; i < galleryItems.length; i++) {
-			galleryItemsArray.append(`<div><img src="${galleryItems[i].img}"><p>${galleryItems[i].name}</p></div>`);
+			
+			// galleryItemsArray.push(`<div><img src="${galleryItems[i].img}"><p>${galleryItems[i].name}</p></div>`);
 
 		}
 		document.getElementById("gallery").append(galleryItemsArray);
 };
 
-// need to make a function that makes the items already
-//populated into buttons then use those in another function
-//to add them to the basket
-
 //function to put selected item text in a list below in the shopping area
 	//to append to list as <p>
-	function addToBasket (clickedItem) {
+function addToBasket (clickedItem) {
 		var addedToBasket = document.getElementById("basket");
 		addedToBasket.append(`<p>${clickedItem}</p>`);
-	}
-	
+	}//i think this is going to work, how do i test it?
+
+
+//making populated items clickable and add them to page
+var itemReadyToBeAdded;
+function itemToCart() {
+	cerealClick.addEventListener("click", populateShoppingCart);
+}
+
+function populateShoppingCart () {
+
+}
